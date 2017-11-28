@@ -35,7 +35,7 @@ config wifi-device      mt7628
         option auotch   2
 	option ht	40
 
-config wifi-iface
+config wifi-iface ap
         option device   mt7628
         option ifname   ra0
         option network  lan
