@@ -1012,12 +1012,20 @@ endef
 #
 
 Image/Build/Profile/MT7628=$(call BuildFirmware/Default4M/$(1),$(1),mt7628,MT7628)
-Image/Build/Profile/YDH=$(call BuildFirmware/Default16M/$(1),$(1),ydh,YDH)
+Image/Build/Profile/YDH_64M_8=$(call BuildFirmware/Default8M/$(1),$(1),ydh_64MByte_8MByte,YDH_64M_8)
+Image/Build/Profile/YDH_128M_16=$(call BuildFirmware/Default16M/$(1),$(1),ydh_128MByte_16MByte,YDH_128M_16)
+Image/Build/Profile/YDH_256M_32=$(call BuildFirmware/Default32M/$(1),$(1),ydh_256MByte_32MByte,YDH_256M_32)
+Image/Build/Profile/YDH_128M_32=$(call BuildFirmware/Default32M/$(1),$(1),ydh_128MByte_32MByte,YDH_128M_32)
+Image/Build/Profile/YDH_256M_16=$(call BuildFirmware/Default16M/$(1),$(1),ydh_256MByte_16MByte,YDH_256M_16)
 
 ifeq ($(SUBTARGET),mt7628)
 define Image/Build/Profile/Default
 	$(call Image/Build/Profile/MT7628,$(1))
-	$(call Image/Build/Profile/YDH)
+	$(call Image/Build/Profile/YDH_64M_8,$(1))
+	$(call Image/Build/Profile/YDH_128M_16,$(1))
+	$(call Image/Build/Profile/YDH_256M_32,$(1))
+	$(call Image/Build/Profile/YDH_128M_32,$(1))
+	$(call Image/Build/Profile/YDH_256M_16,$(1))
 endef
 endif
 
