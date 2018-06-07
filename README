@@ -1,35 +1,121 @@
-This is the buildsystem for the OpenWrt Linux distribution.
+QQ群：436431087（此群为技术交流群）
 
-Please use "make menuconfig" to configure your appreciated
-configuration for the toolchain and firmware.
+简体中文：
+	此SDK是广州元电荷通信科技有限公司为元电荷YDH Kit 开发板配套发布的LEDE 系统SDK包
+	以下说明只适用于元电荷的YDH Kit开发板，其它厂商的板使用此套系统可能会导致严重后果
 
-You need to have installed gcc, binutils, bzip2, flex, python, perl, make,
-find, grep, diff, unzip, gawk, getopt, subversion, libz-dev and libc headers.
+	Linux kernel Version：3.18.29
+	Openwrt Version:15.05 
+	发布时间：2018-06-05
 
-Run "./scripts/feeds update -a" to get all the latest package definitions
-defined in feeds.conf / feeds.conf.default respectively
-and "./scripts/feeds install -a" to install symlinks of all of them into
-package/feeds/.
+	元电荷YDH Kit开发板购买地址:
+	https://item.taobao.com/item.htm?spm=a230r.1.14.22.46171b1el9LmZw&id=561138458446&ns=1&abbucket=13#detail
 
-Use "make menuconfig" to configure your image.
+	开发环境：Ubuntu 64位操作系统
 
-Simply running "make" will build your firmware.
-It will download all sources, build the cross-compile toolchain, 
-the kernel and all choosen applications.
+	部署开发环境：
+		打开Ubuntu系统的terminal, 然后输入以下命令：
+		sudo apt-get update
 
-You can use "scripts/flashing/flash.sh" for remotely updating your embedded
-system via tftp.
+		sudo apt-get install gcc g++ binutils patch bzip2 flex bison make autoconf \ 
+	  		gettext texinfo unzip zip unrar p7zip p7zip-rar p7zip-full sharutils subversion \
+			libncurses5-dev ncurses-term zlib1g-dev gawk git-core libssl-dev
 
-The OpenWrt system is documented in docs/. You will need a LaTeX distribution
-and the tex4ht package to build the documentation. Type "make -C docs/" to build it.
+		等待软件包安装完成以后，运行以下命令，获取源码：
+		git clone https://github.com/ivotten/YDH.git
 
-To build your own firmware you need to have access to a Linux, BSD or MacOSX system
-(case-sensitive filesystem required). Cygwin will not be supported because of
-the lack of case sensitiveness in the file system.
+		更新并安装Openwrt的新依赖包
+		./scripts/feeds update -a && ./scripts/feeds update -a
 
+		运行make menuconfig 命令，选择：
+			Target System -->
+				Ralink RT288x/RT3xxx
+			Subtarget --> 
+				MT7628 based boards
+			Target Profile -->
+				YDH Kit 256MByte 32MByte(此处必须按照你所购买的核心板的配置选择，否则将会导致内核奔溃而无法使用)
 
-Sunshine!
-	Your OpenWrt Project
-	http://openwrt.org
+		保存并退出
 
+		运行make V=s -j 4编译得到对应的固件
 
+		烧录到开发板测试
+
+繁体中文：
+	此SDK是廣州元電荷通信科技有限公司為元電荷YDH Kit 開發板配套發布的LEDE 系統SDK包
+	以下說明只適用於元電荷的YDH Kit開發板，其它廠商的板使用此套系統可能會導致嚴重後果
+
+	Linux kernel Version：3.18.29
+	Openwrt Version:15.05
+	發布時間：2018-06-05
+
+	元電荷YDH Kit開發板購買地址:
+	https://item.taobao.com/item.htm?spm=a230r.1.14.22.46171b1el9LmZw&id=561138458446&ns=1&abbucket=13#detail
+
+	開發環境：Ubuntu 64位操作系統
+
+	部署開發環境：
+		打開Ubuntu系統的terminal, 然後輸入以下命令：
+		sudo apt-get update
+
+		sudo apt-get install gcc g++ binutils patch bzip2 flex bison make autoconf \ 
+			gettext texinfo unzip zip unrar p7zip p7zip-rar p7zip-full sharutils subversion \
+			libncurses5-dev ncurses-term zlib1g-dev gawk git-core libssl-dev
+
+		等待軟件包安裝完成以後，運行以下命令，獲取源碼：
+		git clone https://github.com/ivotten/YDH.git
+
+		更新並安裝LEDE的新依賴包
+		./scripts/feeds update -a && ./scripts/feeds update -a
+
+		運行make menuconfig 命令，選擇：
+			Target System -->
+				Ralink RT288x/RT3xxx
+			Subtarget --> 
+				MT7628 based boards
+			Target Profile -->
+				YDH Kit 256MByte 32MByte(此處必須按照妳所購買的核心板的配置選擇，否則將會導致內核奔潰而無法使用)
+
+		保存並退出
+
+		運行make V=s -j 4編譯得到對應的固件
+
+		燒錄到開發板測試
+
+English:
+	This SDK is based on Openwrt system issued by Guangzhou YuanDianHe Technology Co., Ltd. for the meta charge YDH Kit iot development board.
+	The following description is only applicable to the YDH Kit iot development board.
+
+	Linux kernel Version：3.18.29
+	Openwrt Version: 15.05
+	Release time：2018-06-05
+
+	YDH Kit Iot Board purchase address: https://item.taobao.com/item.htm?spm=a230r.1.14.22.46171b1el9LmZw&id=561138458446&ns=1&abbucket=13#detail
+
+	How to compile?:
+		Ubuntu 16.04 64Bit
+
+		1.install depend
+			sudo apt-get install gcc g++ binutils patch bzip2 flex bison make autoconf \ 
+				gettext texinfo unzip zip unrar p7zip p7zip-rar p7zip-full sharutils subversion \
+				libncurses5-dev ncurses-term zlib1g-dev gawk git-core libssl-dev
+
+		2.download the source use git
+			git clone https://github.com/ivotten/YDH_LEDE.git
+
+		3.update the feeds	
+			./scripts/feeds update -a && ./scripts/feeds update -a					
+
+		4.config
+			Target System -->
+				Ralink RT288x/RT3xxx
+			Subtarget --> 
+				MT7628 based boards
+			Target Profile -->
+				YDH Kit 256MByte 32MByte (Choosed according to your actual situation )
+
+		5.make 
+			make V=s -j4
+
+		6.image
+			the binary image name like this in bin/ramips/: openwrt-ramips-mt7628-ydh_128MByte_16MByte-squashfs-sysupgrade.bin
