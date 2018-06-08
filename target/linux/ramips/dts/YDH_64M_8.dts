@@ -12,7 +12,7 @@
 
 	memory@0 {
 		device_type = "memory";
-		reg = <0x0 0x8000000>;
+		reg = <0x0 0x4000000>;
 	};
 
 	pinctrl {
@@ -51,11 +51,11 @@
 			};
 			ephy_p3 {
 				ralink,group = "ephy_p3";
-				ralink,function = "gpio";
+				ralink,function = "ephy";
 			};
 			ephy_p4 {
 				ralink,group = "ephy_p4";
-				ralink,function = "gpio";
+				ralink,function = "ephy";
 			};
 			wdt {
 				ralink,group = "wdt";
