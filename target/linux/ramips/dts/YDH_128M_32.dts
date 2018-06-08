@@ -51,11 +51,11 @@
 			};
 			ephy_p3 {
 				ralink,group = "ephy_p3";
-				ralink,function = "gpio";
+				ralink,function = "ephy";
 			};
 			ephy_p4 {
 				ralink,group = "ephy_p4";
-				ralink,function = "gpio";
+				ralink,function = "ephy";
 			};
 			wdt {
 				ralink,group = "wdt";
