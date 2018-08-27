@@ -31,7 +31,7 @@ define Package/YDH_MTK_WiFi
 #SECTION:=ralink
   CATEGORY:=YDH SDK
   TITLE:=MT7628/88 SDK  Wifi
-  DEPENDS:=@TARGET_ramips_mt7628 +uci2dat +ated  +wireless-tools +libuci
+  DEPENDS:=@TARGET_ramips_mt7628 +maccalc +uci2dat +ated  +wireless-tools +libuci
   ABI_VERSION:=$(PKG_RELEASE)
 endef
 
