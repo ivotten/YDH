@@ -741,7 +741,7 @@ elseif hwtype == "broadcom" then
 	encr:value("psk2", "WPA2-PSK")
 	encr:value("psk+psk2", "WPA-PSK/WPA2-PSK Mixed Mode")
 
-elseif hwtype == "ralink" or hwtype == "rt2860v2" or hwtype == "mt_wifi" then
+elseif hwtype == "ralink" or hwtype == "rt2860v2" or hwtype == "mt_wifi" or hwtype = "mt7628" then
 	encr:value("psk", "WPA-PSK")
 	encr:value("psk2", "WPA2-PSK")
 end
