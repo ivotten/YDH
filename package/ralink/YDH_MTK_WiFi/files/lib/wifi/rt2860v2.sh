@@ -539,17 +539,6 @@ disable_rt2860v2() {
 	true
 }
 
-enable_rt2860v2_wps_pbc() {
-#帮你解决问题了，你该怎么做? By Lintel 2014.05.05
-#注册 代理 中继
-iwpriv $1 set WscConfMode=7 
-#WPS AP未配置
-iwpriv $1 set WscConfStatus=2
-#WPS PBC模式
-iwpriv $1 set WscMode=2
-#WPS WSC V2支持
-iwpriv $1 set WscV2Support=0
-}
 
 rt2860v2_start_vif() {
 	local vif="$1"
@@ -626,11 +615,6 @@ enable_rt2860v2() {
 		config_get key $vif key
 		config_get ssid $vif ssid
 		config_get mode $vif mode
-		
-		#获取WPS配置信息
-		local wps pin
-		config_get wps $vif wps 
-		config_get pin $vif pin
 		
 		#是否隔离客户端
 		config_get isolate $vif isolate 0
@@ -744,15 +728,6 @@ enable_rt2860v2() {
 					iwpriv $ifname set "WPAPSK=${key}"
 					iwpriv $ifname set DefaultKeyID=2
 					iwpriv $ifname set "SSID=${ssid}"
-					
-					#配置WPS	
-					if [ "$wps" == "pbc" ]  && [ "$encryption" != "none" ]; then {
-					enable_rt2860v2_wps_pbc $ifname
-					touch /tmp/"$ifname"_wps_pbc.lock 2>/dev/null
-					}
-					else
-					rm -rf /tmp/"$ifname"_wps_pbc.lock 2>/dev/null
-					fi;
 					
 					;;
 					
@@ -892,12 +867,12 @@ detect_rt2860v2() {
 		set wireless.ap=wifi-iface
 		set wireless.ap.device=ra${i}
 		set wireless.ap.network=lan
-		set wireless.ap.wps=pbc
 		set wireless.ap.mode=ap
 		set wireless.ap.ssid=YDH-2.4GHz-$( echo $(rt2860v2_get_mac Factory) | awk -F ":" '{print $4""$5""$6 }'| tr a-z A-Z)
 		set wireless.ap.encryption=psk2
 		set wireless.ap.key=12345678
 		set wireless.sta=wifi-iface
+		set wireless.sta.disabled=1
                 set wireless.sta.device=ra${i}
                 set wireless.sta.network=wan
                 set wireless.sta.mode=sta
