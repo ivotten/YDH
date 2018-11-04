@@ -25,7 +25,7 @@ QQ群：436431087（此群为技术交流群）
 		git clone https://github.com/ivotten/YDH.git
 
 		更新并安装Openwrt的新依赖包
-		./scripts/feeds update -a && ./scripts/feeds update -a
+		./scripts/feeds update -a && ./scripts/feeds install -a
 
 		运行make menuconfig 命令，选择：
 			Target System -->
@@ -66,7 +66,7 @@ QQ群：436431087（此群为技术交流群）
 		git clone https://github.com/ivotten/YDH.git
 
 		更新並安裝LEDE的新依賴包
-		./scripts/feeds update -a && ./scripts/feeds update -a
+		./scripts/feeds update -a && ./scripts/feeds install -a
 
 		運行make menuconfig 命令，選擇：
 			Target System -->
@@ -104,7 +104,7 @@ English:
 			git clone https://github.com/ivotten/YDH_LEDE.git
 
 		3.update the feeds	
-			./scripts/feeds update -a && ./scripts/feeds update -a					
+			./scripts/feeds update -a && ./scripts/feeds install -a					
 
 		4.config
 			Target System -->
