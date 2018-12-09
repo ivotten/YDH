@@ -107,6 +107,9 @@ rt2860v2_prepare_config() {
 	
 #获取设备的传输功率
 	config_get txpower $device txpower
+
+#获取单/双天线模式
+	config_get antnum $device antnum
 	
 #获取设备的HT（频宽）
 	config_get ht $device ht
@@ -142,11 +145,17 @@ rt2860v2_prepare_config() {
 
 #大于11的时候支持11-14号频道
 	[ "$channel" != "auto" ] && {
-	[ ${channel:-0} -ge 1 -a ${channel:-0} -le 11 ] && countryregion=0
-	[ ${channel:-0} -ge 12 -a ${channel:-0} -le 13 ] && countryregion=1
-	[ ${channel:-0} -eq 14 ] && countryregion=31
+	countryregion=1
 	debug "channel=$channel countryregion=$countryregion"
 	}
+
+#单双天线模式，如果数值不为1或者2，默认启动双天线
+	if [ $antnum -eq '1' ]; then
+		iwpriv ra0 e2p 34=3411
+	else
+		iwpriv ra0 e2p 34=3422
+	fi
+		
 
 #获取虚拟接口的数量，并提前配置SSID
 for vif in $vifs; do
@@ -862,6 +871,7 @@ detect_rt2860v2() {
 		set wireless.ra${i}.txpower=100
 		set wireless.ra${i}.ht=40
 		set wireless.ra${i}.country=CN
+		set wireless.ra${i}.antnum=2
 		set wireless.ra${i}.disabled=0
 
 		set wireless.ap=wifi-iface
